@@ -10,27 +10,77 @@ export class PartnerService {
     {
       id: 1,
       partnerName: "Over the Moon",
-      status: "O"
+      status: "O",
+      beveragesServed: [{
+        beverageId: 1,
+        beverageName: "Kingfisher",
+        beverageType: "B"
+      },
+      {
+        beverageId: 2,
+        beverageName: "Hogarden",
+        beverageType: "B"
+      }]
     },
     {
       id: 2,
       partnerName: "The Laal Street",
-      status: "O"
+      status: "O",
+      beveragesServed: [{
+        beverageId: 1,
+        beverageName: "Kingfisher",
+        beverageType: "B"
+      },
+      {
+        beverageId: 3,
+        beverageName: "Heinkin",
+        beverageType: "B"
+      }]
     },
     {
       id: 3,
       partnerName: "Prost",
-      status: "O"
+      status: "O",
+      beveragesServed: [{
+        beverageId: 1,
+        beverageName: "Kingfisher",
+        beverageType: "B"
+      },
+      {
+        beverageId: 3,
+        beverageName: "Hogarden",
+        beverageType: "B"
+      }]
     },
     {
       id: 4,
       partnerName: "Ten Downing Street",
-      status: "O"
+      status: "O",
+      beveragesServed: [{
+        beverageId: 1,
+        beverageName: "Kingfisher",
+        beverageType: "B"
+      }]
     },
     {
       id: 5,
       partnerName: "Hoppipola",
-      status: "C"
+      status: "C",
+      beveragesServed: [{
+        beverageId: 1,
+        beverageName: "Kingfisher",
+        beverageType: "B"
+      },
+      {
+        beverageId: 2,
+        beverageName: "Hogarden",
+        beverageType: "B"
+      },
+      {
+        beverageId: 4,
+        beverageName: "Beera",
+        beverageType: "B"
+      }],
     }
   ];
 

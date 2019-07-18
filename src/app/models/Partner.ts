@@ -1,3 +1,5 @@
+import { Beverage } from './Beverage';
+
 export class Partner {
 
     id: number;
@@ -7,6 +9,7 @@ export class Partner {
     locationLon?: number;
     address?: string;
     imageUrl?: string;
+    beveragesServed?: Beverage[];
 
 
 }

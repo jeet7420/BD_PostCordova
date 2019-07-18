@@ -6,9 +6,7 @@
 
 <ion-content>
   {{partnerDetails.partnerName}}
-  <ion-list>
-    <ion-item *ngFor="let bevServed of partnerDetails.beveragesServed">
-      {{bevServed.beverageName}}
-    </ion-item>
-  </ion-list>
+  <app-beverage-item *ngFor="let beverageItem of partnerDetails.beveragesServed" [beverageItem]="beverageItem">
+
+  </app-beverage-item>
 </ion-content>

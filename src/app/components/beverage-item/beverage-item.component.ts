@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Beverage } from 'src/app/models/Beverage';
+import { BeverageService } from 'src/app/services/beverage.service';
+//import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-beverage-item',
@@ -9,12 +11,14 @@ import { Beverage } from 'src/app/models/Beverage';
 export class BeverageItemComponent implements OnInit {
 
   @Input() beverageItem: Beverage;
-  constructor() { }
+  @Output() addBevToCart = new EventEmitter();
+  constructor(private beverageService: BeverageService) { }
 
   ngOnInit() { }
 
-  addBeverage(beverageItem: Beverage) {
-    console.log("Added Beverage", beverageItem.beverageName);
+  addClick(beverageItem: Beverage) {
+    this.addBevToCart.emit(beverageItem);
   }
+
 
 }

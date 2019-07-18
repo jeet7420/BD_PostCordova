@@ -1,0 +1,10 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Added Drinks</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <app-added-item *ngFor="let beverageItem of addedBeverages" (deleteFromCart)='deleteFromCart($event)'
+    [beverageItem]="beverageItem"></app-added-item>
+    
+</ion-content>

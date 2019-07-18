@@ -1,12 +1,27 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Choose Your Drink</ion-title>
+    <ion-title>{{partnerDetails.partnerName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  {{partnerDetails.partnerName}}
-  <app-beverage-item *ngFor="let beverageItem of partnerDetails.beveragesServed" [beverageItem]="beverageItem">
+
+  <app-beverage-item *ngFor="let beverageItem of partnerDetails.beveragesServed" (addBevToCart)='addToCart($event)'
+    [beverageItem]="beverageItem">
 
   </app-beverage-item>
+
+  <app-order-details [addedBeverages]="cartBeverages"></app-order-details>
+  <h2>
+    Total Amount: {{totalAmount}}
+  </h2>
+
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <h2>
+      Total Amount: {{totalAmount}}
+    </h2>
+    <ion-button (click)="navigateToBuy()" expand="full" shape="round">Buy</ion-button>
+  </ion-toolbar>
+</ion-footer>

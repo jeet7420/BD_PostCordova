@@ -3,4 +3,6 @@ export class Beverage {
     beverageName: string;
     beverageType: string;
     bannaerImageUrl?: string;
+    beveragePrice?:number;
+    quantity?:number;
 }

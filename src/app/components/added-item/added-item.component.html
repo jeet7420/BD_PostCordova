@@ -1,7 +1,7 @@
 <ion-list>
   <ion-item>
     {{beverageItem.beverageName}}, {{beverageItem.beveragePrice}}
-    <ion-button slot="end" (click) = "addClick(beverageItem)">Add</ion-button>
+    <ion-button slot="end" (click) = "deleteItem(beverageItem.beverageId)">remove</ion-button>
   </ion-item>
   
 </ion-list>

@@ -14,12 +14,14 @@ export class PartnerService {
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 200
       },
       {
         beverageId: 2,
         beverageName: "Hogarden",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 400
       }]
     },
     {
@@ -29,12 +31,14 @@ export class PartnerService {
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 250
       },
       {
         beverageId: 3,
         beverageName: "Heinkin",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 500
       }]
     },
     {
@@ -44,12 +48,14 @@ export class PartnerService {
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 300
       },
       {
         beverageId: 3,
         beverageName: "Hogarden",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 300
       }]
     },
     {
@@ -59,7 +65,8 @@ export class PartnerService {
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 400
       }]
     },
     {
@@ -69,7 +76,8 @@ export class PartnerService {
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 200
       },
       {
         beverageId: 2,
@@ -79,7 +87,8 @@ export class PartnerService {
       {
         beverageId: 4,
         beverageName: "Beera",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 550
       }],
     }
   ];

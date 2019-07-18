@@ -6,4 +6,13 @@
 
 <ion-content>
 
+  <ion-list>
+    <ion-item *ngFor="let order of activeOrdersList">
+      {{order.beverage.beverageName}}
+      <ion-button slot="end" (click)="dispenseBeverage(order.orderBeverageId)">
+        <ion-icon slot="icon-only" name="color-fill"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

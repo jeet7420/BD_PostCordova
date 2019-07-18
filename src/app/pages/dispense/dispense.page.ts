@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DispenseService } from 'src/app/services/dispense.service';
+import { OrderBeverage } from 'src/app/models/OrderBeverage';
 
 @Component({
   selector: 'app-dispense',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DispensePage implements OnInit {
 
-  constructor() { }
+  constructor(private dispenseService: DispenseService) { }
+
+  private activeOrdersList: OrderBeverage[];
 
   ngOnInit() {
+    this.activeOrdersList = this.dispenseService.getActiveOrders();
+  }
+
+  dispenseBeverage(id: number) {
+    this.dispenseService.dispenseOrder(id);
   }
 
 }

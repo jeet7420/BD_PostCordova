@@ -13,4 +13,8 @@ export class BeverageItemComponent implements OnInit {
 
   ngOnInit() { }
 
+  addBeverage(beverageItem: Beverage) {
+    console.log("Added Beverage", beverageItem.beverageName);
+  }
+
 }

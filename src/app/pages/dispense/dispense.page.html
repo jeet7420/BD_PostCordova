@@ -8,10 +8,14 @@
 
   <ion-list>
     <ion-item *ngFor="let order of activeOrdersList">
-      {{order.beverage.beverageName}}
-      <ion-button slot="end" (click)="dispenseBeverage(order.orderBeverageId)">
-        <ion-icon slot="icon-only" name="color-fill"></ion-icon>
-      </ion-button>
+      <ion-list>
+        <ion-item *ngFor="let beverage of order.beverages">
+          {{beverage.beverageName}} X {{beverage.quantity}}
+          <ion-button slot="end" (click)="dispenseBeverage(order.orderId,beverage.beverageId)">
+            <ion-icon slot="icon-only" name="color-fill"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-list>
     </ion-item>
   </ion-list>
 

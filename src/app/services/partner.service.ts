@@ -105,7 +105,7 @@ export class PartnerService {
     return [...this.partners];
   }
 
-  getPartnerById(partnerId: number) {
+  getPartnerById(partnerId: number):Partner {
     return {
       ...this.partners.find(partner => {
         return partner.id === partnerId;

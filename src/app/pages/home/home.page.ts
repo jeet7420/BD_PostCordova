@@ -9,6 +9,7 @@ import { PartnerService } from 'src/app/services/partner.service';
 })
 export class HomePage implements OnInit {
 
+  noItemsMessageVisibilty = 'hidden';
   partners: Partner[];
   filteredPartners: Partner[];
   public searchTerm: string = "";

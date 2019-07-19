@@ -1,9 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center; font-family:'Montserrat Medium'">Beer Drum
+      <ion-icon class="notification-icon" name="notifications" size="large"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
+  <div>
+    <ion-searchbar [(ngModel)]="searchTerm" show-cancel-button="focus" placeholder="Search Here"
+      (ionChange)="setFilteredItems()" class="searchbar-input"></ion-searchbar>
+    <p style="font-family: 'Montserrat Regular'; margin: 15px"> Nearby places</p>
+  </div>
   <ion-list>
-    <ion-searchbar [(ngModel)]="searchTerm"
-    (ionChange)="setFilteredItems()" class ="searchbar-input"></ion-searchbar>
     <app-partner *ngFor="let partner of filteredPartners" [partnerItem]="partner">
     </app-partner>
   </ion-list>
-
+ 
 </ion-content>

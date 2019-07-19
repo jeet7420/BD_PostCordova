@@ -1,7 +1,7 @@
 <ion-content>
   <ion-list>
     <ion-searchbar [(ngModel)]="searchTerm"
-    (ionChange)="setFilteredItems()"></ion-searchbar>
+    (ionChange)="setFilteredItems()" class ="searchbar-input"></ion-searchbar>
     <app-partner *ngFor="let partner of filteredPartners" [partnerItem]="partner">
     </app-partner>
   </ion-list>

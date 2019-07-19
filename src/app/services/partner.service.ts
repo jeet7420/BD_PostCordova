@@ -10,6 +10,7 @@ export class PartnerService {
     {
       id: 1,
       partnerName: "Over the Moon",
+      imageUrl:"../../../assets/PartnerPics/1.jpg",
       status: "O",
       beveragesServed: [{
         beverageId: 1,
@@ -28,6 +29,7 @@ export class PartnerService {
       id: 2,
       partnerName: "The Laal Street",
       status: "O",
+      imageUrl:"../../../assets/PartnerPics/2.jpg",
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
@@ -44,6 +46,7 @@ export class PartnerService {
     {
       id: 3,
       partnerName: "Prost",
+      imageUrl:"../../../assets/PartnerPics/3.jpg",
       status: "O",
       beveragesServed: [{
         beverageId: 1,
@@ -62,6 +65,7 @@ export class PartnerService {
       id: 4,
       partnerName: "Ten Downing Street",
       status: "O",
+      imageUrl:"../../../assets/PartnerPics/4.jpg",
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",
@@ -73,6 +77,7 @@ export class PartnerService {
       id: 5,
       partnerName: "Hoppipola",
       status: "C",
+      imageUrl:"../../../assets/PartnerPics/5.jpg",
       beveragesServed: [{
         beverageId: 1,
         beverageName: "Kingfisher",

@@ -9,7 +9,7 @@ import { Partner } from 'src/app/models/Partner';
 export class PartnerComponent implements OnInit {
 
   @Input() partnerItem: Partner;
-
+  bg = "../../../assets/PartnerPics/3.jpg";
   constructor() { }
 
   ngOnInit() { }

@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.partners = this.partnerService.getAllPartners();
+    this.filteredPartners = this.partners;
   }
   setFilteredItems() {
     this.filteredPartners = this.partnerService.filterItems(this.searchTerm);

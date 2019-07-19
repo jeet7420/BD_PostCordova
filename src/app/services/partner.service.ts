@@ -82,7 +82,8 @@ export class PartnerService {
       {
         beverageId: 2,
         beverageName: "Hogarden",
-        beverageType: "B"
+        beverageType: "B",
+        beveragePrice : 300
       },
       {
         beverageId: 4,

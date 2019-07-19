@@ -15,6 +15,7 @@ export class PartnerDetailsPage implements OnInit {
   partnerDetails: Partner;
   cartBeverages: Beverage[];
   totalAmount = 0;
+  imageUrl = "../../../assets/PartnerPics/1.jpg";
 
   constructor(private activatedRoute: ActivatedRoute
     , private partnerService: PartnerService

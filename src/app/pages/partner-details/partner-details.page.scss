@@ -1,0 +1,32 @@
+ion-card {
+  // --background: url("../../../assets/PartnerPics/hoppipolaCropped.jpg");
+  border-radius: 0.5em;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-inline-start: 5px;
+  margin-inline-end: 5px;
+  margin-top: 5px;
+  height: 150px;
+  background-size: contain;
+  opacity: 0.8;
+
+  //  ion-card-header {
+  //      padding-top: .6em;
+  //      all: revert;
+  //      padding-bottom: .6em;
+  //      border-bottom: 1px solid var(--ion-color-primary-tint);
+  //  }
+}
+
+.card-content {
+  font-size: 40px;
+  font-weight: bolder;
+  color: black;
+  opacity: 1;
+  text-align: center;
+}
+// .total-amount {
+//   align-content: right;
+//   margin: 10dp;
+//   font-family: "Montserrat Regular";
+// }

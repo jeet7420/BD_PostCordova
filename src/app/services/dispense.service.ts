@@ -9,6 +9,11 @@ export class DispenseService {
 
   private activeOrders: Order[] = [{
     orderId: 1,
+    partner: {
+      partnerName: "",
+      id: 1,
+      imageUrl: ""
+    },
     beverages: [{
       beverageId: 2,
       beverageName: "Hogarden",

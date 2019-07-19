@@ -16,13 +16,15 @@ export class PartnerService {
         beverageId: 1,
         beverageName: "Kingfisher",
         beverageType: "B",
-        beveragePrice : 200
+        beveragePrice : 200,
+        bannaerImageUrl:"../../../assets/bevPics/kf.jpg"
       },
       {
         beverageId: 2,
         beverageName: "Hogarden",
         beverageType: "B",
-        beveragePrice : 400
+        beveragePrice : 400,
+        bannaerImageUrl:"../../../assets/bevPics/hg.jpg"
       }]
     },
     {
@@ -34,13 +36,16 @@ export class PartnerService {
         beverageId: 1,
         beverageName: "Kingfisher",
         beverageType: "B",
-        beveragePrice : 250
+        beveragePrice : 250,
+        bannaerImageUrl:"../../../assets/bevPics/kf.jpg"
+        
       },
       {
         beverageId: 3,
         beverageName: "Heinkin",
         beverageType: "B",
-        beveragePrice : 500
+        beveragePrice : 500,
+        bannaerImageUrl:"../../../assets/bevPics/hk.jpg"
       }]
     },
     {
@@ -52,13 +57,15 @@ export class PartnerService {
         beverageId: 1,
         beverageName: "Kingfisher",
         beverageType: "B",
-        beveragePrice : 300
+        beveragePrice : 300,
+        bannaerImageUrl:"../../../assets/bevPics/kf.jpg"
       },
       {
         beverageId: 3,
         beverageName: "Hogarden",
         beverageType: "B",
-        beveragePrice : 300
+        beveragePrice : 300,
+        bannaerImageUrl:"../../../assets/bevPics/hg.jpg"
       }]
     },
     {
@@ -70,7 +77,8 @@ export class PartnerService {
         beverageId: 1,
         beverageName: "Kingfisher",
         beverageType: "B",
-        beveragePrice : 400
+        beveragePrice : 400,
+        bannaerImageUrl:"../../../assets/bevPics/kf.jpg"
       }]
     },
     {
@@ -82,19 +90,22 @@ export class PartnerService {
         beverageId: 1,
         beverageName: "Kingfisher",
         beverageType: "B",
-        beveragePrice : 200
+        beveragePrice : 200,
+        bannaerImageUrl:"../../../assets/bevPics/kf.jpg"
       },
       {
         beverageId: 2,
         beverageName: "Hogarden",
         beverageType: "B",
-        beveragePrice : 300
+        beveragePrice : 300,
+        bannaerImageUrl:"../../../assets/bevPics/hg.jpg"
       },
       {
         beverageId: 4,
         beverageName: "Beera",
         beverageType: "B",
-        beveragePrice : 550
+        beveragePrice : 550,
+        bannaerImageUrl:"../../../assets/bevPics/br.jpg"
       }],
     }
   ];

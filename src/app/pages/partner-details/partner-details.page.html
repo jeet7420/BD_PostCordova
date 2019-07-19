@@ -1,27 +1,33 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>{{partnerDetails.partnerName}}</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
+
+
 
 <ion-content>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <ion-card class="partner-header" [ngStyle]="{'background-image': 'url('+ partnerDetails.imageUrl +')'}">
+    <ion-card-content>
+    </ion-card-content>
+  </ion-card>
   <app-beverage-item *ngFor="let beverageItem of partnerDetails.beveragesServed" (addBevToCart)='addToCart($event)'
     [beverageItem]="beverageItem">
 
   </app-beverage-item>
 
-  <app-order-details [addedBeverages]="cartBeverages"  (deleteItemFromCart)="deleteItemFromCart($event)"></app-order-details>
-  <h2>
-    Total Amount: {{totalAmount}}
-  </h2>
+  <app-order-details [addedBeverages]="cartBeverages" (deleteItemFromCart)="deleteItemFromCart($event)">
+  </app-order-details>
+
 
 </ion-content>
 <ion-footer>
-  <ion-toolbar>
-    <h2>
-      Total Amount: {{totalAmount}}
-    </h2>
-    <ion-button (click)="navigateToBuy()" expand="full" shape="round">Buy</ion-button>
-  </ion-toolbar>
+
+  <h2 style="font-family: 'Montserrat Regular'; margin-right: 15px; text-align: right;">
+    Total: <i class="fa fa-rupee" style="margin-top: 5px"></i> {{totalAmount}}
+  </h2>
+  <ion-button (click)="navigateToBuy()" size="large" expand="block" color="primary" style="opacity: 0.8;">Continue to payment
+  </ion-button>
+
 </ion-footer>

@@ -1,7 +1,14 @@
 <ion-list>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <ion-item>
-    {{beverageItem.beverageName}}, {{beverageItem.beveragePrice}}
-    <ion-button slot="end" (click) = "addClick(beverageItem)">Add</ion-button>
+    <ion-avatar slot="start" size = "large">
+      <img [src]="beverageItem.bannaerImageUrl">
+    </ion-avatar>
+    <ion-label>
+      <h3 style="font-family: 'Montserrat Regular'">{{beverageItem.beverageName}}</h3>
+      <p><i class="fa fa-rupee" style="margin-top: 5px"></i> {{beverageItem.beveragePrice}}</p>
+    </ion-label>
+    <ion-button slot="end" (click)="addClick(beverageItem)" fill="outline"  >Add 1 Unit</ion-button>
   </ion-item>
-  
+
 </ion-list>

@@ -1,9 +1,10 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar>
     <ion-title>Added Drinks</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 <ion-content>
+    <p style="font-family: 'Montserrat Regular'; margin: 15px; margin-top:30dp"> Added Drinks</p>
   <app-added-item *ngFor="let beverageItem of addedBeverages" (deleteFromCart)='deleteFromCart($event)'
     [beverageItem]="beverageItem"></app-added-item>
     

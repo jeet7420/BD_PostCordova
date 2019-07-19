@@ -1,6 +1,8 @@
 <ion-content>
   <ion-list>
-    <app-partner *ngFor="let partner of partners" [partnerItem]="partner">
+    <ion-searchbar [(ngModel)]="searchTerm"
+    (ionChange)="setFilteredItems()"></ion-searchbar>
+    <app-partner *ngFor="let partner of filteredPartners" [partnerItem]="partner">
     </app-partner>
   </ion-list>
 

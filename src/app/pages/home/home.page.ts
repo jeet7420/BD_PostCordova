@@ -10,10 +10,16 @@ import { PartnerService } from 'src/app/services/partner.service';
 export class HomePage implements OnInit {
 
   partners: Partner[];
+  filteredPartners: Partner[];
+  public searchTerm: string = "";
   constructor(private partnerService: PartnerService) { }
 
   ngOnInit() {
     this.partners = this.partnerService.getAllPartners();
   }
+  setFilteredItems() {
+    this.filteredPartners = this.partnerService.filterItems(this.searchTerm);
+  }
 
 }
+

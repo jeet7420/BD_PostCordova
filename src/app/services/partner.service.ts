@@ -106,4 +106,10 @@ export class PartnerService {
       })
     }
   }
+
+  filterItems(searchTerm: string):Partner[]{
+    return this.partners.filter(partner => {
+      return partner.partnerName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    });
+  }
 }

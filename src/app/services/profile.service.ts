@@ -9,9 +9,9 @@ export class ProfileService {
 
   private userDetails: User = {
     userId: 1,
-    userName: "Shekhar Suman",
-    userMailId: "shekhar_suman@outlook.com",
-    userPhoneNum: "7337367761"
+    userName: 'Shekhar Suman',
+    userMailId: 'shekhar_suman@outlook.com',
+    userPhoneNum: '7337367761'
   }
 
 

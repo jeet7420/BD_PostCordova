@@ -14,14 +14,14 @@ export class PartnerDetailsPage implements OnInit {
 
   partnerDetails: Partner;
   cartBeverages: Beverage[];
-  totalAmount: number = 0;
+  totalAmount = 0;
 
   constructor(private activatedRoute: ActivatedRoute
     , private partnerService: PartnerService
     , private beverageService: BeverageService) { }
 
   ngOnInit() {
-    let id = +this.activatedRoute.snapshot.paramMap.get('partnerId');
+    const id = +this.activatedRoute.snapshot.paramMap.get('partnerId');
     this.partnerDetails = this.partnerService.getPartnerById(id);
   }
   ionViewDidEnter() {
@@ -29,7 +29,7 @@ export class PartnerDetailsPage implements OnInit {
   }
 
   addToCart(beverage: Beverage) {
-    console.log("Added Beverage", beverage.beverageName);
+    console.log('Added Beverage', beverage.beverageName);
     this.beverageService.addToCart(beverage);
     this.totalAmount += beverage.beveragePrice;
     this.cartBeverages = this.beverageService.getCart();
@@ -37,14 +37,14 @@ export class PartnerDetailsPage implements OnInit {
   }
 
   navigateToBuy(): void {
-    console.log("Navigate to buy");
+    console.log('Navigate to buy');
   }
 
   deleteItemFromCart(id: number) {
 
-    console.log("in partner details controller");
+    console.log('in partner details controller');
 
-    for (var i = 0; i < this.cartBeverages.length; i++) {
+    for (let i = 0; i < this.cartBeverages.length; i++) {
       if (this.cartBeverages[i].beverageId === id) {
         this.totalAmount -= this.cartBeverages[i].beveragePrice;
         if (this.cartBeverages[i].quantity === 1) {

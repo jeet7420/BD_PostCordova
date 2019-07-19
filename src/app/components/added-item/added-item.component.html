@@ -1,10 +1,13 @@
 <ion-list>
   <ion-item>
-    {{beverageItem.beverageName}}, {{beverageItem.beveragePrice}}
-    <ion-button slot="end" (click) = "deleteItem(beverageItem.beverageId)">
-      
-        <ion-icon slot="icon-only" name="close" ></ion-icon>
+    {{beverageItem.beverageName}} X {{beverageItem.quantity}}
+    <ion-button slot="end" (click)="deleteItem(beverageItem.beverageId)">
+      <ion-icon slot="icon-only" name="close"></ion-icon>
     </ion-button>
+
   </ion-item>
-  
+  <ion-item>
+    Price: {{beverageItem.beveragePrice}}
+  </ion-item>
+
 </ion-list>

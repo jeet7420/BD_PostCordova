@@ -11,7 +11,7 @@
 
   </app-beverage-item>
 
-  <app-order-details [addedBeverages]="cartBeverages"></app-order-details>
+  <app-order-details [addedBeverages]="cartBeverages"  (deleteItemFromCart)="deleteItemFromCart($event)"></app-order-details>
   <h2>
     Total Amount: {{totalAmount}}
   </h2>

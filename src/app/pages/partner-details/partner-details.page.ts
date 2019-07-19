@@ -40,4 +40,20 @@ export class PartnerDetailsPage implements OnInit {
     console.log("Navigate to buy");
   }
 
+  deleteItemFromCart(id: number) {
+
+    console.log("in partner details controller");
+
+    for (var i = 0; i < this.cartBeverages.length; i++) {
+      if (this.cartBeverages[i].beverageId === id) {
+        this.totalAmount -= this.cartBeverages[i].beveragePrice;
+        if (this.cartBeverages[i].quantity === 1) {
+          this.cartBeverages.splice(i, 1);
+        } else {
+          this.cartBeverages[i].quantity--;
+        }
+      }
+    }
+  }
+
 }

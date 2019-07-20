@@ -7,6 +7,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { DispensePage } from './dispense.page';
 
+import { ActiveOrderComponent } from 'src/app/components/active-order/active-order.component';
+import { ActiveOrderBeverageItemComponent } from 'src/app/components/active-order-beverage-item/active-order-beverage-item.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +24,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [DispensePage]
+  declarations: [DispensePage, ActiveOrderComponent, ActiveOrderBeverageItemComponent]
 })
 export class DispensePageModule {}

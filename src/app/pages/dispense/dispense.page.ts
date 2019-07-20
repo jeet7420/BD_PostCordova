@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DispenseService } from 'src/app/services/dispense.service';
 import { Order } from 'src/app/models/Order';
+import { DispenseRequest } from 'src/app/models/DispenseRequest';
 
 @Component({
   selector: 'app-dispense',
@@ -17,8 +18,8 @@ export class DispensePage implements OnInit {
     this.activeOrdersList = this.dispenseService.getActiveOrders();
   }
 
-  dispenseBeverage(orderId: number, beverageId: number) {
-    this.dispenseService.dispenseOrder(orderId, beverageId);
+  dispenseBeverage(dispenseRequest: DispenseRequest) {
+    this.dispenseService.dispenseOrder(dispenseRequest.orderId, dispenseRequest.beverageId);
   }
 
 }

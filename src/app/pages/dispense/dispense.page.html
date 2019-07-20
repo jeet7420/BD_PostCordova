@@ -1,22 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dispense</ion-title>
+    <ion-title>Dispense</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-list>
-    <ion-item *ngFor="let order of activeOrdersList">
-      <ion-list>
-        <ion-item *ngFor="let beverage of order.beverages">
-          {{beverage.beverageName}} X {{beverage.quantity}}
-          <ion-button slot="end" (click)="dispenseBeverage(order.orderId,beverage.beverageId)">
-            <ion-icon slot="icon-only" name="color-fill"></ion-icon>
-          </ion-button>
-        </ion-item>
-      </ion-list>
-    </ion-item>
-  </ion-list>
-
+  <app-active-order *ngFor="let order of activeOrdersList" (dispenseBeverage)=dispenseBeverage($event)
+    [activeOrder]=order></app-active-order>
 </ion-content>

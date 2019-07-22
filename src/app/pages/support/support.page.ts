@@ -15,7 +15,6 @@ export class SupportPage implements OnInit {
 
   ngOnInit() {
     this.faqs = this.configService.getFaqs();
-    console.log(this.faqs);
   }
 
   expandItem(item): void {

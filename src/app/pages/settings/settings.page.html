@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: 'Montserrat Regular';">Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label style="font-family: 'Montserrat Regular'">Notifications</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        Stop notifications
+        <ion-toggle slot="end" name="allNotif"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        Block notifications of new places
+        <ion-toggle slot="end" name="newPlaces" checked></ion-toggle>
+      </ion-item>
+      <ion-item>
+        Block notifications of new offers
+        <ion-toggle slot="end" name="newOffers"></ion-toggle>
+      </ion-item>
+    </ion-item-group>
+    <ion-item-group>
 
+      <ion-item-divider>
+        <ion-label style="font-family: 'Montserrat Regular'">Share</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        Share Happiness
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
 </ion-content>

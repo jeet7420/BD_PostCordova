@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class SettingsPage implements OnInit {
 
   constructor() { }
-
+  allNotif: boolean;
+  newPlaces: boolean;
+  newOffers: boolean;
   ngOnInit() {
   }
 

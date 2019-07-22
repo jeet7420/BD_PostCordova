@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', loadChildren: './pages/tabs/tabs.module#TabsPageModule' },
   { path: 'partner-details', loadChildren: './pages/partner-details/partner-details.module#PartnerDetailsPageModule' },
-  { path: 'support', loadChildren: './support/support.module#SupportPageModule' },  
+  { path: 'support', loadChildren: './pages/support/support.module#SupportPageModule' },  
   { path: 'history', loadChildren: './pages/history/history.module#HistoryPageModule' },
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' }
 

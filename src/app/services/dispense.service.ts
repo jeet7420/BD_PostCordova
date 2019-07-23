@@ -10,7 +10,7 @@ export class DispenseService {
   private activeOrders: Order[] = [{
     orderId: 1,
     partner: {
-      partnerName: "",
+      partnerName: "Over The Moon",
       id: 1,
       imageUrl: ""
     },

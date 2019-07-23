@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Order } from 'src/app/models/Order';
 import { DispenseRequest } from 'src/app/models/DispenseRequest';
+import { ConcatSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-active-order',
@@ -15,10 +16,11 @@ export class ActiveOrderComponent implements OnInit {
   @Output() dispenseBeverage = new EventEmitter();
 
   dispenseBevForOrder(dispenseRequest: DispenseRequest) {
+
     dispenseRequest.orderId = this.activeOrder.orderId;
     this.dispenseBeverage.emit(dispenseRequest);
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }

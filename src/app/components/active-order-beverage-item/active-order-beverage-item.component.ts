@@ -16,11 +16,12 @@ export class ActiveOrderBeverageItemComponent implements OnInit {
   @Input() beverage: Beverage;
   @Output() dispenseBeverage = new EventEmitter();
 
-  dispenseBev(beverageId: number){
+  dispenseBev(beverageId: number) {
+    
     this.dispenseRequest.beverageId = beverageId;
     this.dispenseBeverage.emit(this.dispenseRequest);
   }
 
-  ngOnInit() {}
-;
+  ngOnInit() { }
+
 }

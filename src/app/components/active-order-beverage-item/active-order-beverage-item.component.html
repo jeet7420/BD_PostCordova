@@ -1,9 +1,17 @@
-
-  <p>
-    {{beverage.beverageName}} X {{beverage.quantity}}
-    <ion-button slot="end" (click)="dispenseBev(beverage.beverageId)">
-      <ion-icon slot="icon-only" name="color-fill"></ion-icon>
-    </ion-button>
-    </p>
-
-
+<ion-grid>
+  <ion-row>
+    <ion-col size="4">
+      <!-- <ion-card [ngStyle]="{'background-image': 'url('+ beverage.bannerImageUrl +')'}"> -->
+      <img [src]="beverage.bannerImageUrl">
+      <!-- </ion-card> -->
+    </ion-col>
+    <ion-col size="5" style="vertical-align: middle">
+      <p> {{beverage.beverageName}}<br />
+        Quantity: {{beverage.quantity}}
+      </p>
+    </ion-col>
+    <ion-col size="3">
+      <img class="dispense-button" src="../../../assets/icons/dispenseButton.png" (click)="dispenseBev(beverage.beverageId)">
+    </ion-col>
+  </ion-row>
+</ion-grid>

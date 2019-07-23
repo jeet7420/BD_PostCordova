@@ -18,12 +18,14 @@ export class DispenseService {
       beverageId: 2,
       beverageName: "Hogarden",
       beverageType: "B",
-      quantity: 3
+      quantity: 3,
+      bannerImageUrl:"../../../assets/bevPics/hg.jpg"
     }, {
       beverageId: 1,
       beverageName: "Kingfisher",
       beverageType: "B",
-      quantity: 2
+      quantity: 2,
+      bannerImageUrl:"../../../assets/bevPics/kf.jpg"
     }]
   }];
   constructor() { }

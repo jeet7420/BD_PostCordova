@@ -1,6 +1,4 @@
-
-
+<ion-card>
   <app-active-order-beverage-item *ngFor="let beverage of activeOrder.beverages"
     (dispenseBeverage)=dispenseBevForOrder($event) [beverage]=beverage></app-active-order-beverage-item>
-    
-
+</ion-card>

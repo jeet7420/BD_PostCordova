@@ -1,0 +1,31 @@
+ion-card {
+  width: 120px;
+  height: 120px;
+  background-size: contain;
+}
+
+p {
+  // background: red;
+  font-family: "Montserrat Regular";
+  font-size: 20px;
+  height: 100px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ion-col {
+  padding: 0px;
+}
+
+.dispense-button {
+  height: 70px;
+  width: 70px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}

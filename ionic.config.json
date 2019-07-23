@@ -1,5 +1,7 @@
 {
   "name": "BeerDrum",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -17,13 +17,16 @@
     </ion-card-header>
 
     <ion-card-content>
-      <app-expandable expandHeight="350px" [expanded]="faq.expanded">
-        <ion-item *ngFor="let subtitle of faq.subtitles"
-          style="font-family: 'Montserrat Medium'; font-weight: 400;font-size: 10px" lines="none">
+      <app-expandable expandHeight="650px" [expanded]="faq.expanded">
+        <ion-item *ngFor="let subtitle of faq.subtitles" lines="none">
           {{subtitle.subtitleHeading}}<br /> <br />
           {{subtitle.answer}} <br /><br />
         </ion-item>
       </app-expandable>
     </ion-card-content>
   </ion-card>
+  <ion-button color="light" style="margin: 10px;" (click)="callSupport()">
+    <ion-icon name="call"></ion-icon> &nbsp; Call Support
+  </ion-button>
+
 </ion-content>

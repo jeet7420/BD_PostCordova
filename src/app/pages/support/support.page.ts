@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FaqItem } from 'src/app/models/FaqItem';
 import { ConfigService } from 'src/app/services/config.service';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 @Component({
   selector: 'app-support',
@@ -11,7 +12,8 @@ export class SupportPage implements OnInit {
 
   public faqs: FaqItem[] = [];
 
-  constructor(private configService: ConfigService) { }
+  constructor(private configService: ConfigService,
+    private callNumber: CallNumber) { }
 
   ngOnInit() {
     this.faqs = this.configService.getFaqs();
@@ -30,6 +32,14 @@ export class SupportPage implements OnInit {
         return listItem;
       });
     }
+  }
+
+  callSupport() {
+    console.log("here");
+    this.callNumber.callNumber("7337367761", true)
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
   }
 
 }

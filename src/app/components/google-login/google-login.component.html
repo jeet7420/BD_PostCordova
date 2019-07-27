@@ -1,5 +1,5 @@
 <div *ngIf="(user | async) || {} as user">
-  <ion-button no-margin expand="block" *ngIf="!user.uid" (click)="googleLogin()">
+  <ion-button no-margin expand="block" *ngIf="!user.uid" (click)="processGoogleLogin()">
     Login With Google
   </ion-button>
 

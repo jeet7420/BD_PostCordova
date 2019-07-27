@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { Router } from '@angular/router';
 import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ import { PickerOptions } from '@ionic/core';
 export class ProfilePage implements OnInit {
 
   constructor(private userProfile: ProfileService,
-    private pickerCtrl: PickerController) { }
+    private pickerCtrl: PickerController,
+    private authService: AuthService) { }
 
   private user: User;
 
@@ -54,4 +56,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  logout() {
+      this.authService.logout();
+  }
 }

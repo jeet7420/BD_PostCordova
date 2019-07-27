@@ -1,9 +1,10 @@
-import { Component, OnInit, NgZone } from '@angular/core'; 
+import { Component, OnInit, NgZone, Output, EventEmitter } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { app } from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus/ngx'
 import { Observable } from 'rxjs';
+import { GoogleLoginService } from 'src/app/services/google-login.service';
 
 @Component({
   selector: 'app-google-login',
@@ -13,20 +14,22 @@ import { Observable } from 'rxjs';
 export class GoogleLoginComponent implements OnInit {
 
   user: Observable<firebase.User>;
-  
+
+  googleUserDetails: any;
+
   constructor(private afAuth: AngularFireAuth,
     private gplus: GooglePlus) { }
 
-  ngOnInit() {}
+  @Output() googleLogin = new EventEmitter();
 
-  googleLogin(){
-    console.log("check1");
+  ngOnInit() { }
+
+  processGoogleLogin() {
     //this.nativeGoogleLogin();
     this.webGoogleLogin();
   }
 
   async nativeGoogleLogin(): Promise<any> {
-    console.log("check2");
     try {
       const gplusUser = await this.gplus.login({
         'webClientId': '130563067105-h8dq4sb28vut2s7t7jev7duda5ec9a77.apps.googleusercontent.com',
@@ -37,7 +40,7 @@ export class GoogleLoginComponent implements OnInit {
       return await this.afAuth.auth.signInWithCredential(
         firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken)
       )
-    } catch(err){
+    } catch (err) {
       console.log(err)
     }
   }
@@ -47,7 +50,8 @@ export class GoogleLoginComponent implements OnInit {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
       console.log("NAME: " + credential.user.displayName);
-    } catch(err) {
+      this.emitgoogleUserDetailsToParent(credential.user.email);
+    } catch (err) {
       console.log(err);
     }
   }
@@ -57,4 +61,8 @@ export class GoogleLoginComponent implements OnInit {
     this.gplus.logout();
   }
 
+  emitgoogleUserDetailsToParent(emailId: string) {
+    //this.googleUserDetails.emailId = emailId;
+    this.googleLogin.emit({ "emailId": emailId });
+  }
 }

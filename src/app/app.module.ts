@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 //import { GooglePlus, GooglePlusOriginal} from '@ionic-native/google-plus';
 import { GooglePlus } from '@ionic-native/google-plus/ngx'
+import { IonicStorageModule } from '@ionic/storage';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -24,7 +26,15 @@ const firebaseConfig = {
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AngularFireModule.initializeApp(firebaseConfig), AngularFireAuthModule, AppRoutingModule],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    IonicStorageModule.forRoot({ name: '__jppdb' }), 
+    AngularFireModule.initializeApp(firebaseConfig), 
+    AngularFireAuthModule, 
+    AppRoutingModule,
+    HttpClientModule
+  ],
   providers: [
     GooglePlus,
     StatusBar,

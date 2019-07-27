@@ -8,7 +8,7 @@
     </ion-list><br/>
     <ion-button no-margin expand="block">Log In</ion-button><br/>
     <!--<ion-button no-margin expand="block">Google Sign In</ion-button>-->
-    <app-google-login></app-google-login>
+    <app-google-login (googleLogin)=verifyGoogleUser($event)></app-google-login>
   </p>
   </div>
 </ion-content>

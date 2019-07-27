@@ -1,0 +1,13 @@
+<div *ngIf="(user | async) || {} as user">
+  <ion-button no-margin expand="block" *ngIf="!user.uid" (click)="googleLogin()">
+    Login With Google
+  </ion-button>
+
+  <div *ngIf="user.uid">
+    You are already logged in with UID: {{ user.uid }}
+
+    <button ion-button (click)="signOut()">
+      Signout
+    </button>
+  </div>
+</div>

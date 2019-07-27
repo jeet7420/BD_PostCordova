@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: 'partner-details', loadChildren: './pages/partner-details/partner-details.module#PartnerDetailsPageModule' },
   { path: 'support', loadChildren: './pages/support/support.module#SupportPageModule' },  
   { path: 'history', loadChildren: './pages/history/history.module#HistoryPageModule' },
-  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' }
+  { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' },
+  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
 
 
 ];

@@ -74,6 +74,15 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'login',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../login/login.module#LoginPageModule'
+                    }
+                ]
+            },
+            {
                 path: ':partnerId',
                 children: [
                     {

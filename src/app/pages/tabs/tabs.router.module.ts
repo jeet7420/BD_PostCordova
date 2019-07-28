@@ -83,6 +83,15 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'register',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../register/register.module#RegisterPageModule'
+                    }
+                ]
+            },
+            {
                 path: ':partnerId',
                 children: [
                     {

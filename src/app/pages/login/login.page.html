@@ -1,4 +1,4 @@
-<ion-content>
+<!--<ion-content>
   <div>
     <p>
     <ion-list>
@@ -7,8 +7,20 @@
       </ion-item>
     </ion-list><br/>
     <ion-button no-margin expand="block">Log In</ion-button><br/>
-    <!--<ion-button no-margin expand="block">Google Sign In</ion-button>-->
+    <ion-button no-margin expand="block">Google Sign In</ion-button>
     <app-google-login (googleLogin)=verifyGoogleUser($event)></app-google-login>
   </p>
+  </div>
+</ion-content>-->
+
+<ion-content>
+  <div>
+    <form [formGroup]="loginForm" (ngSubmit)="verifyUser()">
+      <ion-item>
+        <ion-input formControlName="phoneNumber" type="text" class=text-input placeholder="Phone Number"></ion-input>
+      </ion-item><br/>
+      <ion-button no-margin type="submit" expand="block" [disabled]="!loginForm.valid" strong="true">LOGIN</ion-button><br/>
+      <app-google-login (googleLogin)=verifyGoogleUser($event)></app-google-login>
+    </form>
   </div>
 </ion-content>

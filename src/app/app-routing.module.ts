@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'support', loadChildren: './pages/support/support.module#SupportPageModule' },  
   { path: 'history', loadChildren: './pages/history/history.module#HistoryPageModule' },
   { path: 'settings', loadChildren: './pages/settings/settings.module#SettingsPageModule' }
+  //{ path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' }
   //{ path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' }
 
 

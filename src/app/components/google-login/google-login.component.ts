@@ -50,7 +50,7 @@ export class GoogleLoginComponent implements OnInit {
       const provider = new firebase.auth.GoogleAuthProvider();
       const credential = await this.afAuth.auth.signInWithPopup(provider);
       console.log("NAME: " + credential.user.displayName);
-      this.emitgoogleUserDetailsToParent(credential.user.email);
+      this.emitgoogleUserDetailsToParent(credential.user.email, credential.user.displayName);
     } catch (err) {
       console.log(err);
     }
@@ -61,8 +61,8 @@ export class GoogleLoginComponent implements OnInit {
     this.gplus.logout();
   }
 
-  emitgoogleUserDetailsToParent(emailId: string) {
+  emitgoogleUserDetailsToParent(emailId: string, fullName: string) {
     //this.googleUserDetails.emailId = emailId;
-    this.googleLogin.emit({ "emailId": emailId });
+    this.googleLogin.emit({ "emailId": emailId, "fullName": fullName});
   }
 }

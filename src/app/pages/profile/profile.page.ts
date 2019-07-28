@@ -44,7 +44,7 @@ export class ProfilePage implements OnInit {
           margin: 1em 0;
         }
       </style>
-      <strong>Are you sure you ?</strong>
+      <strong>Are you sure ?</strong>
     `;
 
     const alert = await this.alertCtrl.create({

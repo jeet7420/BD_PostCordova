@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { LoginPayload } from '../models/LoginPayload';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AuthService {
   private _url="";
   loginPayload: LoginPayload = {loginMode:""};
 
-  constructor(private storage: Storage, private _http: HttpClient) { }
+  constructor(private storage: Storage, private _http: HttpClient, private router: Router) { }
 
   login(emailId: string, phoneNumber: string, loginMode: string): Promise<boolean> {
     this.loginPayload.emailId=emailId;
@@ -47,6 +48,7 @@ export class AuthService {
     return this.storage.remove(this.authTokenKey).then(() => {
       this.authToken=null;
       console.log("logout");
+      this.router.navigate(['/tabs/home']);
       return true;
     });
   }

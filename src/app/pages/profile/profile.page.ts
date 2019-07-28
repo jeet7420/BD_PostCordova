@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfilePage implements OnInit {
 
   constructor(private userProfile: ProfileService,
     private pickerCtrl: PickerController,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private alertCtrl: AlertController) { }
 
   private user: User;
 
@@ -24,6 +26,45 @@ export class ProfilePage implements OnInit {
   }
   userCity: string = "Hyderbad";
 
+  async logoutWarning() {
+
+    const alertMsg = `
+      <style>
+        .logout-warning {
+          color: var(--ion-color-primary);
+        }
+        .logout-warning .alert-message {
+          text-align: center;
+        }
+        .logout-warning img {
+          max-width: 4em;
+        }
+        .logout-warning strong {
+          display: block;
+          margin: 1em 0;
+        }
+      </style>
+      <strong>Are you sure you ?</strong>
+    `;
+
+    const alert = await this.alertCtrl.create({
+      message: alertMsg,
+      cssClass: 'logout-warning',
+      buttons: [{
+        text: 'YES',
+        handler: () => {
+          this.authService.logout();
+        }
+      },
+      {
+        text: 'NO',
+        handler: () => {
+          this.alertCtrl.dismiss;   
+        }
+      }],
+    });
+    await alert.present();
+  }
 
   async showBasicPicker() {
     let opts: PickerOptions = {

@@ -17,6 +17,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 
+import { Facebook } from '@ionic-native/Facebook/ngx';
+
 const firebaseConfig = {
   //apiKey: "130563067105-v3vjge5njp5rch7df1km8i4sj3fduj03.apps.googleusercontent.com",
   apiKey: "AIzaSyBTcW8cv_sIFNcqZ3sGlf5ZN0_A8hEw3HY",
@@ -37,6 +39,7 @@ const firebaseConfig = {
   ],
   providers: [
     GooglePlus,
+    Facebook,
     StatusBar,
     SplashScreen,
     CallNumber,
@@ -45,3 +48,4 @@ const firebaseConfig = {
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+ 

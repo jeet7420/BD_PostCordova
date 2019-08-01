@@ -8,6 +8,7 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
 
 import { GoogleLoginComponent } from 'src/app/components/google-login/google-login.component';
+import { FacebookLoginComponent } from 'src/app/components/facebook-login/facebook-login.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,6 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [LoginPage, GoogleLoginComponent]
+  declarations: [LoginPage, GoogleLoginComponent, FacebookLoginComponent]
 })
 export class LoginPageModule {}

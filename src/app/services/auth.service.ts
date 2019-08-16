@@ -21,6 +21,54 @@ export class AuthService {
 
   constructor(private storage: Storage, private _http: HttpClient, private router: Router) { }
 
+  sendOtp(phoneNumber: string): Promise<boolean> {
+    let otpPayload = { phoneNum: phoneNumber};
+    console.log("send otp service call");
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    return this._http.post(this._url + "/sendOTP"
+        , otpPayload
+        , options
+      ).toPromise<Object>().then(data => {
+        var response = JSON.parse(JSON.stringify(data));
+        console.log(response);
+        if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
+          return false;
+        } else if (response.responseStatus == '1') {
+          return true;
+        } else {
+          console.log("Something went wrong");
+          return false;
+        }
+      });;
+  }
+
+  verifyOtp(phoneNumber: string, otp: string): Promise<boolean> {
+    let verifyOtpPayload = { phoneNum: phoneNumber, OTP: otp};
+    console.log("send otp service call");
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    return this._http.post(this._url + "/verifyOTP"
+        , verifyOtpPayload
+        , options
+      ).toPromise<Object>().then(data => {
+        var response = JSON.parse(JSON.stringify(data));
+        console.log(response);
+        if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
+          return false;
+        } else if (response.responseStatus == '1') {
+          return true;
+        } else {
+          console.log("Something went wrong");
+          return false;
+        }
+      });;
+  }
+
   register(emailId: string, fullName: string, phoneNumber: string, loginMode: string, redirectURL: string): Promise<boolean> {
     console.log("Email Id: ", emailId);
     console.log("Full Name: ", fullName);

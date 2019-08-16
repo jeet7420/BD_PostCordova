@@ -1,0 +1,10 @@
+<ion-content>
+  <div>
+    <form [formGroup]="otpForm" (ngSubmit)="verifyOtp()">
+      <ion-item>
+        <ion-input formControlName="otp" type="text" class=text-input placeholder="Enter Otp"></ion-input>
+      </ion-item><br/>
+      <ion-button no-margin type="submit" expand="block" [disabled]="!otpForm.valid" strong="true">VERIFY</ion-button><br/>
+    </form>
+  </div>
+</ion-content>

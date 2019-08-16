@@ -56,20 +56,26 @@ export class LoginPage implements OnInit {
 
   verifyUser(){
     let phoneNumberLocal = this.loginForm.get("phoneNumber").value;
-    this.authService.login(null, null, phoneNumberLocal, this.userLoginToken, this.redirect).then(
+    this.authService.sendOtp(phoneNumberLocal).then(
       async res => {
-        if (res) {
-          this.router.navigateByUrl(this.redirect);
-        } else {
-          this.router.navigate(['/tabs/register'], {
+        if(res) {
+          this.router.navigate(['/tabs/opt-input-panel'], {
             queryParams: {
               redirect: this.redirect,
               loginMode: this.userLoginToken,
-              phoneNumber: phoneNumberLocal,
+              phoneNumber: phoneNumberLocal
             }
           });;
         }
+        else {
+          const toast = await this.toastCtrl.create({
+            message: 'Otp not sent. Please renter phone number and click on login',
+            duration: 1500,
+          });
+          toast.present();
+        }
       }
     );
+    //let phoneNumberLocal = this.loginForm.get("phoneNumber").value;
   }
 }

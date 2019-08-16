@@ -92,6 +92,15 @@ const routes: Routes = [
                 ]
             },
             {
+                path: 'opt-input-panel',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../otp-input-panel/otp-input-panel.module#OtpInputPanelPageModule'
+                    }
+                ]
+            },
+            {
                 path: ':partnerId',
                 children: [
                     {

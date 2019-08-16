@@ -1,5 +1,5 @@
 export class LoginPayload {
-    emailId?: string;
-    phoneNumber?: string;
-    loginMode: string; 
+    email?: string;
+    phoneNum?: string;
+    loginType: string; 
 }

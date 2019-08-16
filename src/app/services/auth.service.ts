@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPayload } from '../models/LoginPayload';
 import { RegisterPayload } from '../models/RegisterPayload';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { ObjectOrientedRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  private _url = 'http://103.120.179.22:3000/apiv1';
   readonly authTokenKey = 'auth_token';
-  readonly userLogin = 'U';
+  readonly userLogin = 'P';
   readonly googleLogin = 'G';
   authToken: string;
-  private _url="";
-  loginPayload: LoginPayload = {loginMode:""};
-  registerPayload: RegisterPayload = {emailId:""};
+  loginPayload: LoginPayload = {loginType:""};
+  registerPayload: RegisterPayload = {mailid:""};
 
   constructor(private storage: Storage, private _http: HttpClient, private router: Router) { }
 
@@ -26,66 +27,130 @@ export class AuthService {
     console.log("Phone Number: ", phoneNumber);
     console.log("Login Mode: ", loginMode);
     console.log("Redirect URL: ", redirectURL);
-    this.registerPayload.emailId = emailId;
+    this.registerPayload.mailid = emailId;
     this.registerPayload.fullName = fullName;
     this.registerPayload.phoneNumber = phoneNumber;
-    if(loginMode == this.userLogin){
-      const authToken = btoa(`${this.loginPayload.phoneNumber}`);
-      return this.storage.set(this.authTokenKey, authToken).then(res => {
-        this.authToken=authToken;
-        return Promise.resolve(true);
-      });
+    //this.registerPayload.signup_type = loginMode;
+    console.log("register service call");
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    if (loginMode == this.userLogin) {
+      return this._http.post(this._url + "/register"
+        , this.registerPayload
+        , options
+      ).toPromise<Object>().then(data => {
+        var response = JSON.parse(JSON.stringify(data));
+        console.log(response);
+        if (response.responseStatus == '2' || response.responseStatus == '3') {
+          return false;
+        } else if (response.responseStatus == '1') {
+          console.log("register " + this.registerPayload.phoneNumber);
+          const authToken = btoa(`${this.registerPayload.phoneNumber}`);
+          this.storage.set(this.authTokenKey, authToken).then(res => {
+            this.authToken = authToken;
+          });
+          return true;
+        } else {
+          console.log("Something went wrong");
+          return false;
+        }
+      });;
     }
-    if(loginMode == this.googleLogin){
-      const authToken = btoa(`${this.loginPayload.emailId}`);
-      return this.storage.set(this.authTokenKey, authToken).then(res => {
-        this.authToken=authToken;
-        return Promise.resolve(true);
-      });
+    if (loginMode == this.googleLogin) {
+      return this._http.post(this._url + "/register"
+        , this.registerPayload
+        , options
+      ).toPromise<Object>().then(data => {
+        var response = JSON.parse(JSON.stringify(data));
+        console.log(response);
+        if (response.responseStatus == '2' || response.responseStatus == '3') {
+          return false;
+        } else if (response.responseStatus == '1') {
+          console.log("register " + this.registerPayload.mailid);
+          const authToken = btoa(`${this.registerPayload.mailid}`);
+          this.storage.set(this.authTokenKey, authToken).then(res => {
+            this.authToken = authToken;
+          });
+          return true;
+        } else {
+          console.log("Something went wrong");
+          return false;
+        }
+      });;
     }
   }
 
-  login(emailId: string, fullName: string, phoneNumber: string, loginMode: string, redirectURL: string): Promise<boolean> {
-    console.log("CHECK: ", phoneNumber);
-    this.loginPayload.emailId=emailId;
-    this.loginPayload.phoneNumber=phoneNumber;
-    this.loginPayload.loginMode=loginMode;
-    if(this.loginPayload.loginMode == this.userLogin){
-      if(!(this.loginPayload.phoneNumber == '8298916264' || this.loginPayload.phoneNumber == '7337367761')){
-        this.router.navigate(['/tabs/register'], {
-          queryParams: {
-            redirect: redirectURL,
-            loginMode: this.userLogin,
-            phoneNumber: phoneNumber
+  login(emailId: string, fullName: string, phoneNumber: string, loginMode: string, redirectURL: string): Promise<Object> {
+    this.loginPayload.email = emailId;
+    this.loginPayload.phoneNum = phoneNumber;
+    this.loginPayload.loginType = loginMode;
+
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+
+    if (this.loginPayload.loginType == this.userLogin) {
+      if (!(this.loginPayload.phoneNum == '8298916264' || this.loginPayload.phoneNum == '7337367761')) {
+        return this._http.post(this._url + "/login"
+          , this.loginPayload
+          , options
+        ).toPromise<Object>().then(data => {
+          var response = JSON.parse(JSON.stringify(data));
+          console.log(response);
+          if (response.responseStatus == '2') {
+            console.log(response.responseStatus);
+            return false;
+          } else if (response.responseStatus == '1') {
+            console.log("login " + this.loginPayload.phoneNum);
+            const authToken = btoa(`${this.loginPayload.phoneNum}`);
+            this.storage.set(this.authTokenKey, authToken).then(res => {
+              this.authToken = authToken;
+            });
+            return true;
+          } else {
+            console.log("Something went wrong");
+            return false;
           }
         });
-        return Promise.resolve(false);
       }
-      const authToken = btoa(`${this.loginPayload.phoneNumber}`);
+      const authToken = btoa(`${this.loginPayload.phoneNum}`);
       return this.storage.set(this.authTokenKey, authToken).then(res => {
-        this.authToken=authToken;
+        this.authToken = authToken;
         return Promise.resolve(true);
       });
     }
-    if(this.loginPayload.loginMode == this.googleLogin){
-      if(!(this.loginPayload.emailId == 'jeet7420@gmail.com' || this.loginPayload.emailId == 'shekhars271991@gmail.com')) {
+    if (this.loginPayload.loginType == this.googleLogin) {
+      if (!(this.loginPayload.email == 'jeet7420@gmail.com' || this.loginPayload.email == 'shekhars271991@gmail.com')) {
         //this.registerPayload.emailId = this.loginPayload.emailId;
         //this.registerPayload.fullName = fullName;
         //console.log("from service: ", this.registerPayload.emailId);
         //console.log("from service: ", this.registerPayload.fullName);
-        this.router.navigate(['/tabs/register'], {
-          queryParams: {
-            redirect: redirectURL,
-            loginMode: this.googleLogin,
-            emailId: this.loginPayload.emailId,
-            fullName: fullName
+        return this._http.post(this._url + "/login"
+          , this.loginPayload
+          , options
+        ).toPromise<Object>().then(data => {
+          var response = JSON.parse(JSON.stringify(data));
+          if (response.responseStatus == '2') {
+            return false;
+          } else if (response.responseStatus == '1') {
+            console.log("login " + this.loginPayload.email);
+            const authToken = btoa(`${this.loginPayload.email}`);
+            this.storage.set(this.authTokenKey, authToken).then(res => {
+              this.authToken = authToken;
+            });
+            return true;
+          } else {
+            console.log("Something went wrong");
+            return false;
           }
-        });
-        return Promise.resolve(false);
+        });;
       }
-      const authToken = btoa(`${this.loginPayload.emailId}`);
+      const authToken = btoa(`${this.loginPayload.email}`);
       return this.storage.set(this.authTokenKey, authToken).then(res => {
-        this.authToken=authToken;
+        this.authToken = authToken;
         return Promise.resolve(true);
       });
     }

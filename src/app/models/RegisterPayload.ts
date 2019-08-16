@@ -1,5 +1,5 @@
 export class RegisterPayload {
-    emailId?: string;
+    mailid?: string;
     fullName?: string;
     phoneNumber?: string;
 }

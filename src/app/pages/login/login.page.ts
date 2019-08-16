@@ -11,7 +11,7 @@ import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
 })
 export class LoginPage implements OnInit {
 
-  readonly userLoginToken = 'U';
+  readonly userLoginToken = 'P';
   readonly googleLoginToken = 'G';
   loginForm: FormGroup;
   redirect: string;
@@ -35,34 +35,41 @@ export class LoginPage implements OnInit {
   }
 
   verifyGoogleUser(googleUserDetails: any){
-    this.authService.login(googleUserDetails.emailId, googleUserDetails.fullName, null, this.googleLoginToken, this.redirect).then(
+    var loginResponse = this.authService.login(googleUserDetails.emailId, googleUserDetails.fullName, null, this.googleLoginToken, this.redirect);
+    loginResponse.then(
       async res => {
         if (res) {
           this.router.navigateByUrl(this.redirect);
         } else {
-          const toast = await this.toastCtrl.create({
-            message: 'Welcome to Beerdrum. Please enter the above details.',
-            duration: 3000,
+          this.router.navigate(['/tabs/register'], {
+            queryParams: {
+              redirect: this.redirect,
+              loginMode: this.googleLoginToken,
+              emailId: googleUserDetails.emailId,
+              fullName: googleUserDetails.fullName
+            }
           });
-          toast.present();
         }
       }
-    );;
+    );
   }
 
   verifyUser(){
-    this.authService.login(null, null, this.loginForm.get("phoneNumber").value, this.userLoginToken, this.redirect).then(
+    let phoneNumberLocal = this.loginForm.get("phoneNumber").value;
+    this.authService.login(null, null, phoneNumberLocal, this.userLoginToken, this.redirect).then(
       async res => {
         if (res) {
           this.router.navigateByUrl(this.redirect);
         } else {
-          const toast = await this.toastCtrl.create({
-            message: 'Welcome to Beerdrum. Please enter the above details.',
-            duration: 3000,
-          });
-          toast.present();
+          this.router.navigate(['/tabs/register'], {
+            queryParams: {
+              redirect: this.redirect,
+              loginMode: this.userLoginToken,
+              phoneNumber: phoneNumberLocal,
+            }
+          });;
         }
       }
-    );;
+    );
   }
 }

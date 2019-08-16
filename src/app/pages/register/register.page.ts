@@ -17,9 +17,9 @@ export class RegisterPage implements OnInit {
   emailId: string;
   phoneNumber: string;
   fullName: string;
-  registerPayload: RegisterPayload = {emailId:""};
+  registerPayload: RegisterPayload = {mailid:""};
   registerForm: FormGroup;
-  readonly userLogin = 'U';
+  readonly userLogin = 'P';
   readonly googleLogin = 'G';
 
   constructor(private authService: AuthService,

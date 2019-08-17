@@ -1,9 +1,9 @@
 
 
 export class User {
-    userId: number;
-    userName: string;
-    userMailId?: string;
-    userPhoneNum?: string;
-    profileImageUrl?: string;
+    mailid?: string;
+    user_category?: string;
+    user_type?: string;
+    full_name?: string;
+    phone_number?: string;
 }

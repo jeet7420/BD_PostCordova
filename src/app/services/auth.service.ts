@@ -3,6 +3,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginPayload } from '../models/LoginPayload';
 import { RegisterPayload } from '../models/RegisterPayload';
+import { User } from '../models/User';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ObjectOrientedRenderer3 } from '@angular/core/src/render3/interfaces/renderer';
@@ -13,60 +14,62 @@ import { ObjectOrientedRenderer3 } from '@angular/core/src/render3/interfaces/re
 export class AuthService {
   private _url = 'http://103.120.179.22:3000/apiv1';
   readonly authTokenKey = 'auth_token';
+  readonly userDetailsKey = 'userDetails';
   readonly userLogin = 'P';
   readonly googleLogin = 'G';
   authToken: string;
-  loginPayload: LoginPayload = {loginType:""};
-  registerPayload: RegisterPayload = {mailid:""};
+  loginPayload: LoginPayload = { loginType: "" };
+  registerPayload: RegisterPayload = { mailid: "" };
+  userDetails: User = { mailid: "" };
 
   constructor(private storage: Storage, private _http: HttpClient, private router: Router) { }
 
   sendOtp(phoneNumber: string): Promise<boolean> {
-    let otpPayload = { phoneNum: phoneNumber};
+    let otpPayload = { phoneNum: phoneNumber };
     console.log("send otp service call");
     var options = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
     };
     return this._http.post(this._url + "/sendOTP"
-        , otpPayload
-        , options
-      ).toPromise<Object>().then(data => {
-        var response = JSON.parse(JSON.stringify(data));
-        console.log(response);
-        if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
-          return false;
-        } else if (response.responseStatus == '1') {
-          return true;
-        } else {
-          console.log("Something went wrong");
-          return false;
-        }
-      });;
+      , otpPayload
+      , options
+    ).toPromise<Object>().then(data => {
+      var response = JSON.parse(JSON.stringify(data));
+      console.log(response);
+      if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
+        return false;
+      } else if (response.responseStatus == '1') {
+        return true;
+      } else {
+        console.log("Something went wrong");
+        return false;
+      }
+    });;
   }
 
   verifyOtp(phoneNumber: string, otp: string): Promise<boolean> {
-    let verifyOtpPayload = { phoneNum: phoneNumber, OTP: otp};
+    let verifyOtpPayload = { phoneNum: phoneNumber, OTP: otp };
     console.log("send otp service call");
     var options = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/json')
     };
     return this._http.post(this._url + "/verifyOTP"
-        , verifyOtpPayload
-        , options
-      ).toPromise<Object>().then(data => {
-        var response = JSON.parse(JSON.stringify(data));
-        console.log(response);
-        if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
-          return false;
-        } else if (response.responseStatus == '1') {
-          return true;
-        } else {
-          console.log("Something went wrong");
-          return false;
-        }
-      });;
+      , verifyOtpPayload
+      , options
+    ).toPromise<Object>().then(data => {
+      var response = JSON.parse(JSON.stringify(data));
+      console.log(response);
+      if (response.responseStatus == '2' || response.responseStatus == '3' || response.responseStatus == '4') {
+        return true;
+      } else if (response.responseStatus == '1') {
+        return true;
+      } else {
+        console.log("Something went wrong");
+        return true;
+      }
+    });;
   }
 
   register(emailId: string, fullName: string, phoneNumber: string, loginMode: string, redirectURL: string): Promise<boolean> {
@@ -96,6 +99,8 @@ export class AuthService {
         } else if (response.responseStatus == '1') {
           console.log("register " + this.registerPayload.phoneNumber);
           const authToken = btoa(`${this.registerPayload.phoneNumber}`);
+          this.setUserDetails(response.userDetails);
+          this.storage.set(this.userDetailsKey, this.userDetails);
           this.storage.set(this.authTokenKey, authToken).then(res => {
             this.authToken = authToken;
           });
@@ -118,6 +123,8 @@ export class AuthService {
         } else if (response.responseStatus == '1') {
           console.log("register " + this.registerPayload.mailid);
           const authToken = btoa(`${this.registerPayload.mailid}`);
+          this.setUserDetails(response.userDetails);
+          this.storage.set(this.userDetailsKey, this.userDetails);
           this.storage.set(this.authTokenKey, authToken).then(res => {
             this.authToken = authToken;
           });
@@ -153,7 +160,10 @@ export class AuthService {
             return false;
           } else if (response.responseStatus == '1') {
             console.log("login " + this.loginPayload.phoneNum);
-            const authToken = btoa(`${this.loginPayload.phoneNum}`);
+            //const authToken = btoa(`${this.loginPayload.phoneNum}`);
+            const authToken = btoa(`${response.authToken}`);
+            this.setUserDetails(response.userDetails);
+            this.storage.set(this.userDetailsKey, this.userDetails);
             this.storage.set(this.authTokenKey, authToken).then(res => {
               this.authToken = authToken;
             });
@@ -186,6 +196,8 @@ export class AuthService {
           } else if (response.responseStatus == '1') {
             console.log("login " + this.loginPayload.email);
             const authToken = btoa(`${this.loginPayload.email}`);
+            this.setUserDetails(response.userDetails);
+            this.storage.set(this.userDetailsKey, this.userDetails);
             this.storage.set(this.authTokenKey, authToken).then(res => {
               this.authToken = authToken;
             });
@@ -206,7 +218,7 @@ export class AuthService {
 
   logout(): Promise<boolean> {
     return this.storage.remove(this.authTokenKey).then(() => {
-      this.authToken=null;
+      this.authToken = null;
       console.log("logout");
       this.router.navigate(['/tabs/home']);
       return true;
@@ -224,5 +236,41 @@ export class AuthService {
       }
     }
     return this.authToken;
+  }
+
+  async getLoggedInUser() {
+
+    let user: User;
+    if (!this.userDetails) {
+      console.log("storage tokennnn");
+      await this.storage.ready();
+      this.storage.get(this.userDetailsKey).then(res => {
+        user = res;
+        if (user) {
+          console.log("storage user recievedddd");
+          this.userDetails = user;
+        }
+        return this.userDetails;
+      });
+    }
+    //console.log("name " + this.userDetails.full_name);
+    //console.log("email " + this.userDetails.mailid);
+    //console.log("phone " + this.userDetails.phone_number);
+    //console.log("category " + this.userDetails.user_category);
+    //console.log("type " + this.userDetails.user_type);
+    return this.userDetails;
+  }
+
+  setUserDetails(user: any) {
+    //console.log("name " + user.fullName);
+    //console.log("email " + user.mailid);
+    //console.log("phone " + user.phoneNum);
+    //console.log("category " + user.userCategory);
+    //console.log("type " + user.userType);
+    this.userDetails.full_name = user.fullName;
+    this.userDetails.mailid = user.mailid;
+    this.userDetails.phone_number = user.phoneNum;
+    this.userDetails.user_category = user.userCategory;
+    this.userDetails.user_type = user.userType;
   }
 }

@@ -6,6 +6,7 @@ import { PickerController } from '@ionic/angular';
 import { PickerOptions } from '@ionic/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-profile',
@@ -17,13 +18,35 @@ export class ProfilePage implements OnInit {
   constructor(private userProfile: ProfileService,
     private pickerCtrl: PickerController,
     private authService: AuthService,
+    private storage: Storage,
     private alertCtrl: AlertController) { }
 
-  private user: User;
+  private user: User= {mailid:""};
+  private userDetails: User;
 
   ngOnInit() {
-    this.user = this.userProfile.getUserDetails(1);
+    //this.user = this.userProfile.getUserDetails(1);
+    this.getUserDetails().then(res => { 
+      this.user = res;
+      console.log("name " + this.user.full_name);
+      console.log("email " + this.user.mailid);
+      console.log("phone " + this.user.phone_number);
+      console.log("category " + this.user.user_category);
+      console.log("type " + this.user.user_type);
+    });
   }
+
+   getUserDetails() {
+    return this.authService.getLoggedInUser().then(res => {
+      //console.log("ole " + res.full_name);
+      //console.log("ole " + res.mailid);
+      //console.log("ole " + res.phone_number);
+      //console.log("ole " + res.user_category);
+      //console.log("ole " + res.user_type);
+      return res;
+    });
+  }
+
   userCity: string = "Hyderbad";
 
   async logoutWarning() {

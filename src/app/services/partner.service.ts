@@ -1,10 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Partner } from '../models/Partner';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
+import { Location } from '../models/Location';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PartnerService {
+  private _url = 'http://103.120.179.22:5000/apiv1';
+
+  location: Location = { city: "" };
+
+  constructor(private _http: HttpClient, private authService: AuthService) { }
 
   private partners: Partner[] = [
     {
@@ -110,10 +118,17 @@ export class PartnerService {
     }
   ];
 
-  constructor() { }
-
   getAllPartners() {
-    return [...this.partners];
+    this.location.city="";
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    return this._http.post(this._url + "/partners/allPartners"
+        , this.location
+        , options
+      );
+    //return [...this.partners];
   }
 
   getPartnerById(partnerId: number):Partner {

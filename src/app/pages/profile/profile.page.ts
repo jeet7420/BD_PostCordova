@@ -27,7 +27,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     //this.user = this.userProfile.getUserDetails(1);
     this.getUserDetails().then(res => { 
-      this.user = res;
+      //this.user = res;
       console.log("name " + this.user.full_name);
       console.log("email " + this.user.mailid);
       console.log("phone " + this.user.phone_number);

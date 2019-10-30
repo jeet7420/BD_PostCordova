@@ -9,12 +9,13 @@ import { Location } from '../models/Location';
 })
 export class PartnerService {
   private _url = 'http://103.120.179.22:5000/apiv1';
+  private order_url = 'http://103.120.179.22:4000/apiv1';
 
   location: Location = { city: "" };
 
   constructor(private _http: HttpClient, private authService: AuthService) { }
 
-  private partners: Partner[] = [
+  /*private partners: Partner[] = [
     {
       id: 1,
       partnerName: "Over the Moon",
@@ -116,7 +117,7 @@ export class PartnerService {
         bannerImageUrl:"../../../assets/bevPics/br.jpg"
       }],
     }
-  ];
+  ];*/
 
   getAllPartners() {
     this.location.city="";
@@ -131,17 +132,38 @@ export class PartnerService {
     //return [...this.partners];
   }
 
-  getPartnerById(partnerId: number):Partner {
-    return {
+  getPartnerById(partnerId: number) {
+    console.log("service call");
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    return this._http.post(this._url + "/partners/partnerDetails"
+        , {"partnerId":"2"}
+        , options
+      );
+    /*return {
       ...this.partners.find(partner => {
         return partner.id === partnerId;
       })
-    }
+    }*/
   }
 
-  filterItems(searchTerm: string):Partner[]{
-    return this.partners.filter(partner => {
-      return partner.partnerName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+  initiateOrder(orderDetails) {
+    console.log("initiate service call");
+    var options = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+    };
+    return this._http.post(this.order_url + "/orders/initiateOrder"
+        , orderDetails
+        , options
+      );
+  }
+
+  filterItems(searchTerm: string, partnersFromService: Partner[]):Partner[]{
+    return partnersFromService.filter(partner => {
+      return partner.partner_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
   }
 }

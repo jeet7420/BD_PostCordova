@@ -8,11 +8,17 @@ var HomePage = /** @class */ (function () {
         this.searchTerm = "";
     }
     HomePage.prototype.ngOnInit = function () {
-        this.partners = this.partnerService.getAllPartners();
-        this.filteredPartners = this.partners;
+        var _this = this;
+        var fetchedPartners = this.partnerService.getAllPartners();
+        fetchedPartners.subscribe(function (partners) {
+            _this.partnersFromService = partners;
+            console.log(_this.partnersFromService);
+            _this.filteredPartners = _this.partnersFromService.partners;
+        });
+        //this.filteredPartners = null;
     };
     HomePage.prototype.setFilteredItems = function () {
-        this.filteredPartners = this.partnerService.filterItems(this.searchTerm);
+        this.filteredPartners = this.partnerService.filterItems(this.searchTerm, this.partnersFromService.partners);
     };
     HomePage = tslib_1.__decorate([
         Component({

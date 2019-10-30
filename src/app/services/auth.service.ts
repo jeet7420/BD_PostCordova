@@ -208,6 +208,8 @@ export class AuthService {
           }
         });;
       }
+      this.setUserDetails({"":""});
+      this.storage.set(this.userDetailsKey, this.userDetails);
       const authToken = btoa(`${this.loginPayload.email}`);
       return this.storage.set(this.authTokenKey, authToken).then(res => {
         this.authToken = authToken;
@@ -253,11 +255,12 @@ export class AuthService {
         return this.userDetails;
       });
     }
-    //console.log("name " + this.userDetails.full_name);
-    //console.log("email " + this.userDetails.mailid);
-    //console.log("phone " + this.userDetails.phone_number);
-    //console.log("category " + this.userDetails.user_category);
-    //console.log("type " + this.userDetails.user_type);
+    console.log("AUTH SERVICE");
+    console.log("name " + this.userDetails.fullName);
+    console.log("email " + this.userDetails.mailid);
+    console.log("phone " + this.userDetails.phoneNum);
+    console.log("category " + this.userDetails.userCategory);
+    console.log("type " + this.userDetails.userType);
     return this.userDetails;
   }
 
@@ -267,10 +270,32 @@ export class AuthService {
     //console.log("phone " + user.phoneNum);
     //console.log("category " + user.userCategory);
     //console.log("type " + user.userType);
-    this.userDetails.full_name = user.fullName;
-    this.userDetails.mailid = user.mailid;
-    this.userDetails.phone_number = user.phoneNum;
-    this.userDetails.user_category = user.userCategory;
-    this.userDetails.user_type = user.userType;
+    //this.userDetails.fullName = user.fullName;
+    //this.userDetails.mailid = user.mailid;
+    //this.userDetails.phoneNum = user.phoneNum;
+    //this.userDetails.userCategory = user.userCategory;
+    //this.userDetails.userType = user.userType;
+    //this.userDetails.userId = user.userId;
+    this.userDetails.fullName = "Jeet";
+    this.userDetails.mailid = "jeet7420@gmail.com";
+    this.userDetails.phoneNum = "8298916264";
+    //this.userDetails.userCategory = user.userCategory;
+    //this.userDetails.userType = user.userType;
+    this.userDetails.userId = 1;
+  }
+
+  purgeUserDetails(user: any) {
+    this.userDetails={};
+    //console.log("name " + user.fullName);
+    //console.log("email " + user.mailid);
+    //console.log("phone " + user.phoneNum);
+    //console.log("category " + user.userCategory);
+    //console.log("type " + user.userType);
+    //this.userDetails.fullName = user.fullName;
+    //this.userDetails.mailid = user.mailid;
+    //this.userDetails.phoneNum = user.phoneNum;
+    //this.userDetails.userCategory = user.userCategory;
+    //this.userDetails.userType = user.userType;
+    //this.userDetails.userId = user.userId;
   }
 }

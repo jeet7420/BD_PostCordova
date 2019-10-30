@@ -1,11 +1,12 @@
 import * as tslib_1 from "tslib";
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { LoginPage } from './login.page';
 import { GoogleLoginComponent } from 'src/app/components/google-login/google-login.component';
+import { FacebookLoginComponent } from 'src/app/components/facebook-login/facebook-login.component';
 var routes = [
     {
         path: '',
@@ -21,9 +22,10 @@ var LoginPageModule = /** @class */ (function () {
                 CommonModule,
                 FormsModule,
                 IonicModule,
+                ReactiveFormsModule,
                 RouterModule.forChild(routes)
             ],
-            declarations: [LoginPage, GoogleLoginComponent]
+            declarations: [LoginPage, GoogleLoginComponent, FacebookLoginComponent]
         })
     ], LoginPageModule);
     return LoginPageModule;

@@ -3,7 +3,11 @@ import { Partner } from './Partner';
 
 
 export class Order {
-    partner?:Partner;
     orderId?: number;
-    beverages: Beverage[];
+    userId?: string;
+    partnerId?: string;
+    orderAmount?: number;
+    customerEmail?: string;
+    customerName?: string;
+    customerPhone?: string;
 }

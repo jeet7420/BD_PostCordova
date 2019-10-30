@@ -26,7 +26,7 @@ export class HomePage implements OnInit {
     //this.filteredPartners = null;
   }
   setFilteredItems() {
-    this.filteredPartners = this.partnerService.filterItems(this.searchTerm);
+    this.filteredPartners = this.partnerService.filterItems(this.searchTerm, this.partnersFromService.partners);
   }
 
 }

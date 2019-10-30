@@ -2,6 +2,7 @@ import * as tslib_1 from "tslib";
 import { NgModule } from "@angular/core";
 import { RouterModule } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { AuthGuard } from 'src/app/services/auth.guard';
 var routes = [
     {
         path: 'tabs',
@@ -12,7 +13,7 @@ var routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: '../login/login.module#LoginPageModule'
+                        loadChildren: '../home/home.module#HomePageModule'
                     }
                 ]
             },
@@ -21,7 +22,8 @@ var routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: '../dispense/dispense.module#DispensePageModule'
+                        loadChildren: '../dispense/dispense.module#DispensePageModule',
+                        canActivate: [AuthGuard]
                     }
                 ]
             },
@@ -30,7 +32,8 @@ var routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: '../profile/profile.module#ProfilePageModule'
+                        loadChildren: '../profile/profile.module#ProfilePageModule',
+                        canActivate: [AuthGuard]
                     }
                 ]
             },
@@ -67,6 +70,33 @@ var routes = [
                     {
                         path: '',
                         loadChildren: '../settings/settings.module#SettingsPageModule'
+                    }
+                ]
+            },
+            {
+                path: 'login',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../login/login.module#LoginPageModule'
+                    }
+                ]
+            },
+            {
+                path: 'register',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../register/register.module#RegisterPageModule'
+                    }
+                ]
+            },
+            {
+                path: 'opt-input-panel',
+                children: [
+                    {
+                        path: '',
+                        loadChildren: '../otp-input-panel/otp-input-panel.module#OtpInputPanelPageModule'
                     }
                 ]
             },

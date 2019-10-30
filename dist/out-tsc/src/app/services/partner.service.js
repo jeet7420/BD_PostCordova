@@ -1,7 +1,14 @@
 import * as tslib_1 from "tslib";
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AuthService } from './auth.service';
 var PartnerService = /** @class */ (function () {
-    function PartnerService() {
+    function PartnerService(_http, authService) {
+        this._http = _http;
+        this.authService = authService;
+        this._url = 'http://103.120.179.22:5000/apiv1';
+        this.order_url = 'http://103.120.179.22:4000/apiv1';
+        this.location = { city: "" };
         this.partners = [
             {
                 id: 1,
@@ -106,23 +113,45 @@ var PartnerService = /** @class */ (function () {
         ];
     }
     PartnerService.prototype.getAllPartners = function () {
-        return this.partners.slice();
+        this.location.city = "";
+        var options = {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+        };
+        return this._http.post(this._url + "/partners/allPartners", this.location, options);
+        //return [...this.partners];
     };
     PartnerService.prototype.getPartnerById = function (partnerId) {
-        return tslib_1.__assign({}, this.partners.find(function (partner) {
+        console.log("service call");
+        var options = {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+        };
+        return this._http.post(this._url + "/partners/partnerDetails", { "partnerId": "2" }, options);
+        /*return {
+          ...this.partners.find(partner => {
             return partner.id === partnerId;
-        }));
+          })
+        }*/
     };
-    PartnerService.prototype.filterItems = function (searchTerm) {
-        return this.partners.filter(function (partner) {
-            return partner.partnerName.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    PartnerService.prototype.initiateOrder = function (orderDetails) {
+        console.log("initiate service call");
+        var options = {
+            headers: new HttpHeaders()
+                .set('Content-Type', 'application/json')
+        };
+        return this._http.post(this.order_url + "/orders/initiateOrder", orderDetails, options);
+    };
+    PartnerService.prototype.filterItems = function (searchTerm, partnersFromService) {
+        return partnersFromService.filter(function (partner) {
+            return partner.partner_name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         });
     };
     PartnerService = tslib_1.__decorate([
         Injectable({
             providedIn: 'root'
         }),
-        tslib_1.__metadata("design:paramtypes", [])
+        tslib_1.__metadata("design:paramtypes", [HttpClient, AuthService])
     ], PartnerService);
     return PartnerService;
 }());

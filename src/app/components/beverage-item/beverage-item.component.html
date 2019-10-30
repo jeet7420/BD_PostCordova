@@ -2,9 +2,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <ion-item>
     <ion-avatar slot="start" size = "large">
-      <img [src]="beverageItem.bannerImageUrl">
+      <img [src]="'http://103.120.179.22:8080/ufs/beerdrum/bevPics/' + beverageItem.bevDisplayPicUrl + '.jpg'">
     </ion-avatar>
-    <ion-label>
+    <ion-label class="ion-text-wrap">
       <h3 style="font-family: 'Montserrat Regular'">{{beverageItem.beverageName}}</h3>
       <p><i class="fa fa-rupee" style="margin-top: 5px"></i> {{beverageItem.beveragePrice}}</p>
     </ion-label>
@@ -12,3 +12,5 @@
   </ion-item>
 
 </ion-list>
+
+

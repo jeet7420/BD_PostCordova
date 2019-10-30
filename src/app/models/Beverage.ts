@@ -1,6 +1,6 @@
 export class Beverage {
     beverageId: number;
-    beverageName: string;
+    beverageName?: string;
     beverageType?: string;
     bannerImageUrl?: string;
     beveragePrice?:number;

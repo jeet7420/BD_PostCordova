@@ -5,6 +5,7 @@ import { app } from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus/ngx'
 import { Observable } from 'rxjs';
 import { GoogleLoginService } from 'src/app/services/google-login.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-google-login',

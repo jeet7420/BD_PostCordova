@@ -6,7 +6,15 @@ var DispensePage = /** @class */ (function () {
         this.dispenseService = dispenseService;
     }
     DispensePage.prototype.ngOnInit = function () {
-        this.activeOrdersList = this.dispenseService.getActiveOrders();
+        var _this = this;
+        console.log("Service Invoked");
+        var dispenseList = this.dispenseService.getActiveOrders();
+        dispenseList.subscribe(function (data) {
+            _this.activeOrdersListFromService = data;
+            console.log(_this.activeOrdersListFromService);
+            _this.activeOrdersList = _this.activeOrdersListFromService;
+        });
+        //this.activeOrdersList = this.dispenseService.getActiveOrders();
     };
     DispensePage.prototype.dispenseBeverage = function (dispenseRequest) {
         this.dispenseService.dispenseOrder(dispenseRequest.orderId, dispenseRequest.beverageId);

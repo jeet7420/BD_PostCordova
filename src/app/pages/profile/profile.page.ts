@@ -27,22 +27,29 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     //this.user = this.userProfile.getUserDetails(1);
     this.getUserDetails().then(res => { 
-      //this.user = res;
-      console.log("name " + this.user.full_name);
-      console.log("email " + this.user.mailid);
-      console.log("phone " + this.user.phone_number);
-      console.log("category " + this.user.user_category);
-      console.log("type " + this.user.user_type);
+      this.user = res;
+      console.log("res");
+      console.log("name " + res.fullName);
+      console.log("email " + res.mailid);
+      console.log("phone " + res.phoneNum);
+      console.log("category " + res.userCategory);
+      console.log("type " + res.userType);
+
+      //console.log("name " + this.user.fullName);
+      //console.log("email " + this.user.mailid);
+      //console.log("phone " + this.user.phoneNum);
+      //console.log("category " + this.user.userCategory);
+      //console.log("type " + this.user.userType);
     });
   }
 
    getUserDetails() {
     return this.authService.getLoggedInUser().then(res => {
-      //console.log("ole " + res.full_name);
-      //console.log("ole " + res.mailid);
-      //console.log("ole " + res.phone_number);
-      //console.log("ole " + res.user_category);
-      //console.log("ole " + res.user_type);
+      console.log("ole " + res.fullName);
+      console.log("ole " + res.mailid);
+      console.log("ole " + res.phoneNum);
+      console.log("ole " + res.userCategory);
+      console.log("ole " + res.userType);
       return res;
     });
   }

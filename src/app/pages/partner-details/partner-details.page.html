@@ -8,11 +8,11 @@
 
 <ion-content>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <ion-card class="partner-header" [ngStyle]="{'background-image': 'url('+ partnerDetails.imageUrl +')'}">
+  <ion-card *ngIf="dataloadedFlag" class="partner-header" [ngStyle]="{'background-image': 'url(http://103.120.179.22:8080/ufs/beerdrum/PartnerPics/'+ partnerDetails?.partnerImageUrl +'.jpg)'}">
     <ion-card-content>
     </ion-card-content>
   </ion-card>
-  <app-beverage-item *ngFor="let beverageItem of partnerDetails.beveragesServed" (addBevToCart)='addToCart($event)'
+  <app-beverage-item *ngFor="let beverageItem of partnerDetails?.inventory" (addBevToCart)='addToCart($event)'
     [beverageItem]="beverageItem">
 
   </app-beverage-item>

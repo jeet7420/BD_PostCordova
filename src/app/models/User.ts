@@ -1,9 +1,10 @@
 
 
 export class User {
+    userId?: number;
     mailid?: string;
-    user_category?: string;
-    user_type?: string;
-    full_name?: string;
-    phone_number?: string;
+    userCategory?: string;
+    userType?: string;
+    fullName?: string;
+    phoneNum?: string;
 }
